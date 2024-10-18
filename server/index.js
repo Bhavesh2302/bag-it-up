@@ -2,10 +2,14 @@ require('dotenv').config()
 const {connection} = require('./config/dbconfig')
 const express = require('express')
 const { Bag } = require('./models/bagModel')
+const { signupController } = require('./controllers/signupController')
+const { loginController } = require('./controllers/loginController')
 const app = express()
 
-app.use(express.json())
 
+app.use(express.json())
+app.use("/signup",signupController)
+app.use("/login",loginController)
 app.get('/',async(req,res)=>{
     res.status(201).send("hello world welcome to the bag shop lets bag it up ");
 })
