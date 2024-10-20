@@ -21,9 +21,10 @@ loginController.post("/", async (req, res) => {
             res.status(200).send({
                 msg:"Login Successful",
                 token:token,
-                 user:{
+                 userInfo:{
                 firstname : user.firstname,
                 lastname : user.lastname,
+                role:user.role,
                 email : user.email,
                 mobile:user.mobile,
             }})

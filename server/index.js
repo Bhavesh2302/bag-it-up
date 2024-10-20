@@ -4,12 +4,16 @@ const express = require('express')
 const { Bag } = require('./models/bagModel')
 const { signupController } = require('./controllers/signupController')
 const { loginController } = require('./controllers/loginController')
+const { adminController } = require('./controllers/adminController')
+const { bagController } = require('./controllers/bagController')
 const app = express()
 
 
 app.use(express.json())
 app.use("/signup",signupController)
 app.use("/login",loginController)
+app.use("/admin",adminController)
+app.use("/bag",bagController)
 app.get('/',async(req,res)=>{
     res.status(201).send("hello world welcome to the bag shop lets bag it up ");
 })
