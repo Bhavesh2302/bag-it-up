@@ -3,12 +3,10 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 const AdminPrivateRoute = ({ children }) => {
-  const user = useSelector((state) => {
-    state.auth;
-  });
+  const {isAuth, token, userData} = useSelector((state) => state.auth);
   const location = useLocation();
 
-  if (user?.isAuth && user?.userData?.role !== 'user'){
+  if (isAuth && token && userData?.role !== 'user'){
     return children;
   } else {
     return <Navigate to="/login" state={{from: location}}/>;

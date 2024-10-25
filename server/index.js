@@ -7,9 +7,11 @@ const { loginController } = require('./controllers/loginController')
 const { adminController } = require('./controllers/adminController')
 const { bagController } = require('./controllers/bagController')
 const app = express()
+const cors = require('cors')
 
 
 app.use(express.json())
+app.use(cors())
 app.use("/signup",signupController)
 app.use("/login",loginController)
 app.use("/admin",adminController)

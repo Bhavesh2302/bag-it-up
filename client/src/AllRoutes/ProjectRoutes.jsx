@@ -4,17 +4,18 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Bag from "../Pages/Bag";
-import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute";
+import AdminPrivateRoute from "../PrivateRoutes/AdminPrivateRoute";
+import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import Cart from "../Pages/Cart";
 import AdminDashboard from "../Pages/AdminDashboard";
 
-const allRoutes = () => {
+const ProjectRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/bags" element={<Bag />} />
+      <Route path="/bag" element={<Bag />} />
       <Route
         path="/cart"
         element={
@@ -26,13 +27,13 @@ const allRoutes = () => {
       <Route
         path="/admin_dashboard"
         element={
-          <PrivateRoute>
+          <AdminPrivateRoute>
             < AdminDashboard/>
-          </PrivateRoute>
+          </AdminPrivateRoute>
         }
-      />
+      /> 
     </Routes>
   );
 };
 
-export default allRoutes;
+export default ProjectRoutes;
