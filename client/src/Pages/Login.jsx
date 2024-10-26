@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../Redux/Reducers/userAuthReducer/action";
+import {Link} from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -114,12 +115,12 @@ const Login = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
-            <a
-              href="#"
+            <Link
+              to="/signup"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Start a 14 day free trial
-            </a>
+              Signup
+            </Link>
           </p>
         </div>
       </div>

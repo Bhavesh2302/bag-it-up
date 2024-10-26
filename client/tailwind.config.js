@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customBiege : "#F5F5DC"
+        customBlue:"#1d4ed8"
       }
     },
   },

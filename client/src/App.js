@@ -7,7 +7,6 @@ import ProjectRoutes from './AllRoutes/ProjectRoutes';
 function App() {
   return (
     <div className="App">
-      {/* <Signup/> */}
       <ProjectRoutes/>
     </div>
   );
