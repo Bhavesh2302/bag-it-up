@@ -2,8 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useNavigate } from "react-router-dom";
 
 const Banners = () => {
+  const navigate = useNavigate()
   const settings = {
     dots: true,
     fade: true,
@@ -24,14 +26,14 @@ const Banners = () => {
   };
 
   const images = [
-    "/bag_images/image_1.png",
-    "/bag_images/image_2.jpeg",
-    "/bag_images/image_3.jpeg",
-    "/bag_images/image_4.jpg",
+    "/bag_images/banner_image_5.jpg",
+    "/bag_images/banner_image_4.jpeg",
+    "/bag_images/banner_image_3.jpeg",
+    "/bag_images/banner_image_2.jpeg",
   ];
 
   return (
-    <div className="slider-container">
+    <div className="slider-container w-4/5 m-auto">
       <Slider {...settings}>
         {images.map((el) => (
           <div className="container mx-auto" key={el}>
@@ -39,15 +41,16 @@ const Banners = () => {
               <p className="mt-2 text-xl bold">
                 Trendy, elegant, and made just for you
               </p>
-              <button className="mt-2 px-4 py-2 bg-customBlue text-white font-semibold rounded-md hover:bg-blue-400">
+              {/* <button className="mt-2 px-4 py-2 bg-customBlue text-white font-semibold rounded-md hover:bg-blue-400">
                 Shop Now
-              </button>
+              </button> */}
             </div>
             <div className="w-full m-auto mt-2">
               <img
-                className="w-[1/2] h-[500px] object-fill m-auto"
+                className="object-fill m-auto cursor-pointer"
                 src={el}
                 alt="Featured Bag"
+                onClick={()=>navigate("/bag")}
               />
             </div>
           </div>
