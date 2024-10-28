@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { authentication } = require("../middlewares/authentication");
-const { Cart } = require("../models/Cart");
+const { Cart } = require("../models/cartModel");
 const { Bag } = require("../models/bagModel");
 
 const cartController = Router();
@@ -20,7 +20,7 @@ cartController.post("/add/:bagId", authentication, async (req, res) => {
   const isExist = await Cart.findOne({ bagId: bagId, userId: userId });
   console.log("isExist", isExist);
   if (!isExist) {
-    const bag = await bag.findOne({ bagId: bagId });
+    const bag = await Bag.findOne({ bagId: bagId });
     const payload = {
       price: bag.actual_price,
       qty: 1,

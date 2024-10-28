@@ -8,6 +8,7 @@ const { adminController } = require('./controllers/adminController')
 const { bagController } = require('./controllers/bagController')
 const app = express()
 const cors = require('cors')
+const { cartController } = require('./controllers/cartController')
 
 
 app.use(express.json())
@@ -16,8 +17,10 @@ app.use("/signup",signupController)
 app.use("/login",loginController)
 app.use("/admin",adminController)
 app.use("/bag",bagController)
+app.use("/cart",cartController)
+
 app.get('/',async(req,res)=>{
-    res.status(201).send("hello world welcome to the bag shop lets bag it up ");
+    res.status(201).send("hello world welcome to the bag shop lets bag it up");
 })
 
 

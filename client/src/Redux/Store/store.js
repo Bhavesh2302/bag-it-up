@@ -3,9 +3,11 @@ import { thunk } from "redux-thunk";
 import { userAuthReducer } from "../Reducers/userAuthReducer/userAuthReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { bagReducer } from "../Reducers/bagReducer/bagReducer";
 
 const rootReducers = combineReducers({
   auth: userAuthReducer,
+  bag:bagReducer
 });
 
 var persistConfig = {

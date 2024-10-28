@@ -4,10 +4,8 @@ const bagController = Router();
 
 bagController.get("/get", async (req, res) => {
 const bagData = await Bag.find()
-  res.send({ bagData: bagData });
+  res.send({ msg: "Bag data successfully loaded",bagData: bagData });
 });
-
-
 
 module.exports = {
   bagController
