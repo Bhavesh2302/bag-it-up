@@ -38,6 +38,7 @@ console.log(data)
               &#8377; {item.actual_price}
             </p>
           </div>
+          <div>{item.category}</div>
       </div>
     
       )) }
