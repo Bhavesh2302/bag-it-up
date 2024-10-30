@@ -22,7 +22,7 @@ cartController.post("/add/:bagId", authentication, async (req, res) => {
   if (!isExist) {
     const bag = await Bag.findOne({ bagId: bagId });
     const payload = {
-      price: bag.actual_price,
+      price: bag.discounted_price,
       qty: 1,
       title: bag.title,
       image_url: bag.image_url_1,

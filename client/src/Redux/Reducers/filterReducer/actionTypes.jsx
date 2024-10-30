@@ -1,0 +1,4 @@
+export const FILTER_CATEGORY = "FILTER_CATEGORY"
+export const FILTER_BRAND = "FILTER_BRAND"
+export const FILTER_SIZE = "FILTER_SIZE"
+export const FILTER_SORT = "FILTER_SORT"

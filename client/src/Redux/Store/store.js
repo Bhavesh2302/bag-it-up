@@ -4,10 +4,12 @@ import { userAuthReducer } from "../Reducers/userAuthReducer/userAuthReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { bagReducer } from "../Reducers/bagReducer/bagReducer";
+import { filterReducer } from "../Reducers/filterReducer/filterReducer";
 
 const rootReducers = combineReducers({
   auth: userAuthReducer,
-  bag:bagReducer
+  bag:bagReducer,
+  filter:filterReducer
 });
 
 var persistConfig = {

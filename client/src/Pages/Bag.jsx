@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBagData } from '../Redux/Reducers/bagReducer/action'
 import { Link } from 'react-router-dom'
+import Filter from '../Components/Filter'
+import Navbar from '../Components/Navbar'
 
 const Bag = () => {
 const dispatch = useDispatch()
@@ -14,7 +16,7 @@ console.log(data)
   return (
     <div className='w-full flex gap-3 mt-[20px]'>
       <div className='w-1/4'>
-      hello
+      <Filter/>
       </div>
       <div className='w-3/4 lg:grid lg:grid-cols-3 lg:gap-4  md:grid md:grid-cols-2 md:gap-2'>
       {data && data.length>0 && data.map((item)=>(
@@ -34,11 +36,15 @@ console.log(data)
               {item.title}
             </div>
             <div className="text-[#969491]">{item.brand}</div>
-            <p className="font-semibold lg:text-sm md:text-xs sm:text-xs">
-              &#8377; {item.actual_price}
-            </p>
+            
           </div>
-          <div>{item.category}</div>
+          <div className='flex justify-between gap-3'>
+          <p className="font-semibold lg:text-sm md:text-xs sm:text-xs">
+              &#8377; {item.discounted_price}
+            </p>
+          <div></div>  
+          </div>
+
       </div>
     
       )) }
