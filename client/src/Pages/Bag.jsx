@@ -8,10 +8,12 @@ import Navbar from '../Components/Navbar'
 const Bag = () => {
 const dispatch = useDispatch()
 const {data} = useSelector((state)=>state.bag)
+const { sort, brand, category, size } = useSelector((state) => state.filter);
+console.log(sort,brand,category,size,"filters")
 
 useEffect(() => {
-  dispatch(getBagData());
-}, []);
+  dispatch(getBagData({sort,brand,category,size,skip:0}));
+}, [sort,brand,category,size]);
 console.log(data)
   return (
     <div className='w-full flex gap-3 mt-[20px]'>

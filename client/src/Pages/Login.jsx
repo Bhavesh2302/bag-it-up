@@ -39,19 +39,19 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-customBiege">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6  mt-6 lg:px-8 bg-customBiege">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="bag_it_up"
             src="https://i.imgur.com/8SSRICl.png"
-            className="mx-auto h-10 w-auto"
+            className="h-14 w-14 m-auto"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label

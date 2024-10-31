@@ -56,7 +56,7 @@ console.log(newBrand)
   };
 
   const handleSort = (e) => {
-    const sortOrder = e.target.value === "Low to High" ? 1 : -1;
+    const sortOrder = e.target.value === "Low to High" ? "1" : "-1";
     dispatch(filterSort(sortOrder));
   };
 
@@ -94,7 +94,7 @@ console.log(newBrand)
         toggle={() => toggleSection("sort")}
         options={["Low to High", "High to Low"]}
         handleChange={handleSort}
-        checkedValues={sort === 1 ? ["Low to High"] : ["High to Low"]}
+        checkedValues={sort === "1" ? ["Low to High"] : ["High to Low"]}
         isRadio={true}
       />
     </div>

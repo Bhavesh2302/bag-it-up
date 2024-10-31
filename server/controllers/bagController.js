@@ -4,6 +4,8 @@ const bagController = Router();
 
 bagController.get("/get", async (req, res) => {
   const { brand, category, size, color, sort, skip,limit} = req.query;
+  console.log(req.query, "query")
+  console.log(sort, "sort")
   let aggregatePipeline = [];
   let matchingCondition = [];
 
@@ -30,8 +32,8 @@ bagController.get("/get", async (req, res) => {
       const query = Bag.find().skip(Number(skip) || 0).limit(limit || 12);
       if (sort) query.sort({ discounted_price: Number(sort) });
       bagData = await query;
-    }
       res.send({ msg: "Bag data successfully loaded", bagData: bagData });
+    }
     }
    catch (err) {
     res.send(500).send({ msg: "Something went wrong!" });

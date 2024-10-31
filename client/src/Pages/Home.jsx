@@ -6,8 +6,8 @@ import Footers from '../Components/Footers'
 const Home =() =>{
   return (
     <div>
-      <Navbar/>
-      <Banners/>l̥
+      {/* <Navbar/> */}
+      <Banners/>
     <Footers/>
       
     </div>
