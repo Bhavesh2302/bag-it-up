@@ -15,6 +15,7 @@ useEffect(() => {
   dispatch(getBagData({sort,brand,category,size,skip:0}));
 }, [sort,brand,category,size]);
 console.log(data)
+
   return (
     <div className='w-full flex gap-3 mt-[20px]'>
       <div className='w-1/4'>
