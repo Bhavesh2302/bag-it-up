@@ -39,8 +39,8 @@ const Login = () => {
   };
 
   return (
-    <div className="w-1/2 m-auto">
-      <div className="mt-6 p-6 shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset] ">
+    <div className=" sm:w-[90%] md:w-4/5 lg:w-1/2 m-auto">
+      <div className="sm:w-full mt-6 p-6 shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset] ">
         <div className="w-full">
           <img
             alt="bag_it_up"
@@ -52,16 +52,16 @@ const Login = () => {
           </h2>
         </div>
 
-        <div className="w-4/5 m-auto">
+        <div className="sm:w-full md:w-4/5 m-auto">
           <form onSubmit={handleSubmit} className="w-full mt-4">
-            <div className="flex items-center justify-evenly mt-4 gap-3">
+            <div className="flex items-center justify-between mt-4 gap-3">
               <label
                 htmlFor="email"
                 className="text-md font-medium text-gray-800 w-1/4 flex items-center"
               >
-                Email:
+                Email: 
               </label>
-              <div className="mt-2 w-3/4">
+              <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4">
                 <input
                   id="email"
                   name="email"
@@ -70,18 +70,18 @@ const Login = () => {
                   autoComplete="email"
                   value={loginForm.email}
                   onChange={handleLogin}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center sm:w-4/5 md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-            <div className="flex items-center justify-evenly mt-4 gap-3">
+            <div className="flex items-center justify-between mt-4 gap-3">
               <label
                 htmlFor="lastname"
                 className="text-md font-medium text-gray-800 w-1/4 flex items-center"
               >
                 Password:
               </label>
-              <div className="mt-2 w-3/4">
+              <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4">
                 <input
                   id="password"
                   name="password"
@@ -90,7 +90,7 @@ const Login = () => {
                   autoComplete="password"
                   value={loginForm.password}
                   onChange={handleLogin}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center sm:4/5 md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>            

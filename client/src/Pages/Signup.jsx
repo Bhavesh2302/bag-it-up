@@ -40,8 +40,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-2/3 m-auto">
-      <div className="w-4/5 mt-6 p-4 m-auto shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset]">
+    <div className="sm:w-full md:w-3/4 lg:w-2/3 m-auto">
+      <div className="sm:w-full md:w-4/5 mt-4 p-4 m-auto shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset]">
         <div className="w-full">
         <img
             alt="bag_it_up"
@@ -53,7 +53,7 @@ const Signup = () => {
           </h2>
         </div>
 
-        <div className="w-4/5 m-auto">
+        <div className="sm:w-full md:w-4/5 m-auto">
           <form onSubmit={handleSubmit} className="w-full mt-4">
             <div className="flex items-center justify-evenly mt-4 gap-3">
               <label
@@ -71,7 +71,7 @@ const Signup = () => {
                   autoComplete="firstname"
                   value={signupForm.firstname}
                   onChange={handleSignup}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -91,7 +91,7 @@ const Signup = () => {
                   autoComplete="lastname"
                   value={signupForm.lastname}
                   onChange={handleSignup}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ const Signup = () => {
                 htmlFor="mobile"
                 className="text-md font-medium text-gray-800 w-1/4 flex items-center"
               >
-                Mobile Number:
+                Mobile No:
               </label>
               <div className="mt-2 w-3/4">
                 <input
@@ -111,7 +111,7 @@ const Signup = () => {
                   autoComplete="mobile"
                   value={signupForm.mobile}
                   onChange={handleSignup}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -120,7 +120,7 @@ const Signup = () => {
                 htmlFor="email"
                 className="text-md font-medium text-gray-800 w-1/4 flex items-center"
               >
-                Email address:
+                Email Id:
               </label>
               <div className="mt-2 w-3/4">
                 <input
@@ -131,7 +131,7 @@ const Signup = () => {
                   autoComplete="email"
                   value={signupForm.email}
                   onChange={handleSignup}
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -161,7 +161,7 @@ const Signup = () => {
                   value={signupForm.password}
                   onChange={handleSignup}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
