@@ -39,14 +39,14 @@ const Banners = () => {
           <div className="container mx-auto" key={el}>
             <div className="text-center text-gray-800 bold">
               <p className="mt-2 text-xl bold">
-                Welcome to the bag shop lets bag it up
+                Welcome to the bag shop lets bag it up !
               </p>
               <div className="flex items-center justify-center mt-[10px]">
               <button
                 className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
                 onClick={() => navigate("/bag")}
               >
-                Shop Now
+                Shop Now 
               </button>
               </div>
             
