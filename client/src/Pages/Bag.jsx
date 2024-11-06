@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBagData } from "../Redux/Reducers/bagReducer/action";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Filter from "../Components/Filter";
 import Navbar from "../Components/Navbar";
 
@@ -9,6 +9,7 @@ const Bag = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.bag);
   const { sort, brand, category, size } = useSelector((state) => state.filter);
+  const navigate = useNavigate()
   console.log(sort, brand, category, size, "filters");
 
   useEffect(() => {
@@ -72,7 +73,8 @@ const Bag = () => {
                 <button className="bg-gray-500 text-white sm:text-sm rounded-lg hover:bg-gray-600 lg:px-3 lg:py-1 md:px-2 md:py-1 sm:px-[6px] sm:py-[2px]">
                   Wishlist
                 </button>
-                <button className="bg-gray-500 text-white sm:text-sm rounded-lg hover:bg-gray-600 lg:px-3 lg:py-1 md:px-2 md:py-1 sm:px-[6px] sm:py-[2px]">
+                <button className="bg-gray-500 text-white sm:text-sm rounded-lg hover:bg-gray-600 lg:px-3 lg:py-1 md:px-2 md:py-1 sm:px-[6px] sm:py-[2px]"
+                 onClick={() => navigate("/cart")}>
                   Add to Cart
                 </button>
               </div>
