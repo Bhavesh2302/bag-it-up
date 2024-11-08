@@ -26,6 +26,7 @@ const Bag = () => {
       {data &&
           data.length > 0 &&
           data.map((item) => (
+            <Link to="/single_bag">
             <div
               key={item?._id}
               className="lg:w-[250px] md:w-[200px] sm:w-[150px] border rounded-sm mt-6"
@@ -79,6 +80,7 @@ const Bag = () => {
                 </button>
               </div>
             </div>
+            </Link>
           ))}
       </div>
     </div>

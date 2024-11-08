@@ -8,6 +8,7 @@ import AdminPrivateRoute from "../PrivateRoutes/AdminPrivateRoute";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import Cart from "../Pages/Cart";
 import AdminDashboard from "../Pages/AdminDashboard";
+import SingleProduct from "../Pages/SingleProduct";
 
 const ProjectRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const ProjectRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/bag" element={<Bag />} />
+      <Route path="/single_bag" element={<SingleProduct/>}/>
       <Route
         path="/cart"
         element={
