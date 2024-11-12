@@ -6,10 +6,10 @@ const Accordion = ({ title, isOpen, toggle, options, handleChange, checkedValues
   return (
     <div className="w-4/5 m-auto mt-4">
         <div className="flex justify-between">
-      <div className="text-center font-bold mb-2 cursor-pointer">
+      <div className="text-center text-[#646464] font-semibold mb-2 cursor-pointer">
         {title}
       </div>
-      <div onClick={toggle} >{isOpen ? <FaMinus/> : <FaPlus/>}</div>
+      <div className="text-[#646464] font-semibold cursor-pointer" onClick={toggle} >{isOpen ? <FaMinus/> : <FaPlus/>}</div>
       </div>
       {isOpen && (
         <div>

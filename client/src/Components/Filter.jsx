@@ -61,7 +61,7 @@ console.log(newBrand)
   };
 
   return (
-    <div className="w-full h-full font-semibold lg:text-base md:text-sm sm:text-xs">
+    <div className="w-full h-full lg:text-base md:text-sm sm:text-xs">
       <Accordion
         title="Filter By Brand"
         isOpen={openSection === "brand"}
@@ -75,7 +75,7 @@ console.log(newBrand)
         title="Filter By Category"
         isOpen={openSection === "category"}
         toggle={() => toggleSection("category")}
-        options={["backpack", "Duffel", "trolley"]}
+        options={["backpack", "duffel", "trolley"]}
         handleChange={handleCategory}
         checkedValues={category}
       />

@@ -17,7 +17,7 @@ const ProjectRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/bag" element={<Bag />} />
-      <Route path="/single_bag" element={<SingleProduct/>}/>
+      <Route path="/single_bag/:id" element={<SingleProduct/>}/>
       <Route
         path="/cart"
         element={
