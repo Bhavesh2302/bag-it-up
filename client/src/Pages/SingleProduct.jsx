@@ -10,26 +10,23 @@ const SingleProduct = () => {
   const { sort, brand, category, size } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const [singleBag, setSingleBag] = useState({});
-  // useEffect(() => {
-  //   if (data.length === 0) {
-  //     dispatch(getBagData());
-  //   }
-  // }, [data.length]);
+ 
+
   useEffect(() => {
     if(data.length === 0)
-    dispatch(getBagData({ sort, brand, category, size, skip: 0 }));
-  }, [data.length, sort, brand, category, size]);
+    dispatch(getBagData({brand, category, size, skip: 0 }));
+  }, [data.length, brand, category, size]);
 
   useEffect(() => {
     if (id) {
-      const singleSelectedBag = data?.find((item) => item._id === id);
-      console.log(singleSelectedBag)
+      const singleSelectedBag = data?.find((item) => item._id == id);
+      // console.log(singleSelectedBag,"singleSelectedbAg")
       singleSelectedBag && setSingleBag(singleSelectedBag);
     }
   }, [id,data]);
   console.log(data);
   console.log(id);
-  return <div className="w-[90%] m-auto">
+  return <div className="w-[80%] m-auto">
     <ProductOverview singleBag = {singleBag}/>
   </div>;
 };

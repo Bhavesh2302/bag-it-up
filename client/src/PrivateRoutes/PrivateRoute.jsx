@@ -20,9 +20,11 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
   const { isAuth, token, userData } = useSelector((state) => state.auth);
+
+  console.log(isAuth,token,userData ,"hellooo")
   const location = useLocation();
 
-  if (isAuth && token && userData?.role === 'user'){
+  if (isAuth && token && userData?.user?.role === 'user'){
     return children
   }else {
     return <Navigate to="/login" state={{ from: location }} />;

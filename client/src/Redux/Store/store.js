@@ -5,17 +5,19 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { bagReducer } from "../Reducers/bagReducer/bagReducer";
 import { filterReducer } from "../Reducers/filterReducer/filterReducer";
+import { cartReducer } from "../Reducers/cartReducer/cartReducer";
 
 const rootReducers = combineReducers({
   auth: userAuthReducer,
   bag:bagReducer,
-  filter:filterReducer
+  filter:filterReducer,
+  cart:cartReducer
 });
 
 var persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth","bag","filter"],
+  whitelist: ["auth","bag","filter","cart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

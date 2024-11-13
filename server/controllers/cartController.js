@@ -20,7 +20,8 @@ cartController.post("/add/:bagId", authentication, async (req, res) => {
   const isExist = await Cart.findOne({ bagId: bagId, userId: userId });
   console.log("isExist", isExist);
   if (!isExist) {
-    const bag = await Bag.findOne({ bagId: bagId });
+    const bag = await Bag.findOne({ _id: bagId });
+    console.log(bag,"bagggggggggg")
     const payload = {
       price: bag.discounted_price,
       qty: 1,

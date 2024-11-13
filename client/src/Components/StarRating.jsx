@@ -8,7 +8,7 @@ const StarRating = ({ rating }) => {
 
   return (
     <div className="flex items-center">
-      {Array(fullStars)
+      {rating && Array(fullStars)
         .fill()
         .map((_, index) => (
             <span key={index} className="text-yellow-500 text-sm sm:text-base md:text-lg lg:text-xl">

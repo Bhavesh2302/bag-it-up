@@ -1,47 +1,29 @@
-import React from 'react'
-import ImageViewer from './ImageViewer'
-import ProductDescription from './ProductDescription'
-import StarRating from './StarRating'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../Redux/Reducers/cartReducer/action'
+import React from "react";
+import StarRating from "./StarRating";
 
-const ProductOverview = ({singleBag}) => {
-  const dispatch = useDispatch()
-  const {token} = useSelector((state)=>state.auth)
-  console.log(token)
-  const navigate = useNavigate()
-
-  const handleAddToCart = () =>{
-    dispatch(addToCart(singleBag?._id,token))
-  }
-    
+const ProductDescription = ({ singleBag }) => {
+    console.log(singleBag, "singleBagggggg")
   return (
-    <div className='w-full sm:flex sm:flex-col   md:flex md:flex-col lg:flex lg:flex-row  gap-0  mt-5'>
-      <div className='lg:w-1/2'>
-      <ImageViewer bag = {singleBag}/>
-      </div>
-  <div className='md:w-3/4 lg:w-1/2  md:mt-[20px]'>
+    <div className="w-full ">
         <div className="text-start text-[#646464] font-bold text-2xl mt-[10px]">
           {singleBag.title}
         </div>
         <div className="text-start text-[#969491] font-bold text-md mt-[10px]">
             {singleBag.brand}
+          {singleBag.brand.charAt(0).toUpperCase() + singleBag.brand.slice(1).toLowerCase()}
       </div>
       <div className="text-start text-[#646464] font-bold text-md mt-[10px]">
-        {singleBag.category}
-       {singleBag?.category?.charAt(0).toUpperCase() +   singleBag?.category?.slice(1).toLowerCase()}
+      {singleBag.category}
+       {singleBag.category.charAt(0).toUpperCase() +  singleBag.category.slice(1).toLowerCase()}
       </div>
-      <div className="mt-[10px]">
-      {/* <StarRating rating={singleBag?.rating}/> */}
-      </div>
+      {/* <div className="mt-[10px]">
+      <StarRating rating={singleBag.rating}/>
+      </div> */}
       <div className="text-start text-[#646464] font-bold text-md mt-[10px]">
       &#8377;  {singleBag.actual_price}
       </div>
-      <div className="w-full flex flex-start">
-          <button onClick={
-            handleAddToCart
-          } className="text-white rounded-[6px]  hover:text-white font-semibold bg-customBlue w-40 text-[15px] mt-[10px]">Add To Cart</button>
+      <div className="w-full">
+          <button className="text-white rounded-[6px]  hover:text-white font-semibold bg-customBlue w-40 text-[15px] mt-[10px]">Add To Cart</button>
       </div>
       <div className="text-start mt-[10px]">
       <div className="overflow-x-auto">
@@ -95,10 +77,8 @@ const ProductOverview = ({singleBag}) => {
 
 
       </div>
-    
-  </div> 
     </div>
-  )
-}
+  );
+};
 
-export default ProductOverview
+export default ProductDescription;
