@@ -8,7 +8,7 @@ import Footers from './Components/Footers';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App w-full m-auto">
       <Navbar/>
       <ProjectRoutes/>
       <Footers/>

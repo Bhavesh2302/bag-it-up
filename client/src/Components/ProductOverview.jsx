@@ -29,7 +29,6 @@ const ProductOverview = ({singleBag}) => {
             {singleBag.brand}
       </div>
       <div className="text-start text-[#646464] font-bold text-md mt-[10px]">
-        {singleBag.category}
        {singleBag?.category?.charAt(0).toUpperCase() +   singleBag?.category?.slice(1).toLowerCase()}
       </div>
       <div className="mt-[10px]">
@@ -46,7 +45,7 @@ const ProductOverview = ({singleBag}) => {
       <div className="text-start mt-[10px]">
       <div className="overflow-x-auto">
   <table className="min-w-full bg-white border border-gray-200">
-    <thead>
+    <thead className='bg-white divide-y divide-gray-200"'>
       <tr>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
           Feature

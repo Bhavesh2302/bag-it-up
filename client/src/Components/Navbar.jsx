@@ -8,13 +8,20 @@ import {
   FaBars,
   FaSearch
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userLogout } from "../Redux/Reducers/userAuthReducer/action";
 
 const Navbar = () => {
   const { isAuth, token } = useSelector((state) => state.auth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const handleLogout = () =>{
+    navigate("/login")
+ dispatch(userLogout())
+  }
 
   return (
     <nav className="relative w-full shadow-md">
@@ -45,19 +52,28 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-end gap-3 w-1/4">
           <FaShoppingCart
+          onClick={()=>navigate("/cart")}
             className="text-gray-600 cursor-pointer lg:block md:block"
             size={24}
           />
-          <FaHeart
+          {/* <FaHeart
             className="text-gray-600 cursor-pointer lg:block md:block"
             size={24}
-          />
+          /> */}
           {isAuth && token ? (
+            <div>
             <img
               src="https://via.placeholder.com/40"
               alt="User Avatar"
               className="w-10 h-10 rounded-full cursor-pointer sm:hidden"
             />
+            <button
+              className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+            </div>
           ) : (
             <button
               className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
@@ -66,6 +82,7 @@ const Navbar = () => {
               Login
             </button>
           )}
+          
           <FaBars
             className="text-gray-600 cursor-pointer sm:block md:hidden relative"
             size={24}
@@ -75,14 +92,14 @@ const Navbar = () => {
             <ClickAwayListener onClickAway={() => setIsMenuOpen(false)}>
               <div className="md:hidden bg-[#FFF] border-gray absolute right-0 top-16 z-[9999999999999999999999]">
                 <div className="flex flex-col items-start px-4 py-2 space-y-2">
-                  <button className="flex items-center space-x-2">
-                    <FaShoppingCart className="text-gray-600" size={20} />
+                  <button className="flex items-center space-x-2 " onClick={()=>navigate("/cart")}>
+                    <FaShoppingCart   className="text-gray-600" size={20} />
                     <span>Cart</span>
                   </button>
-                  <button className="flex items-center space-x-2">
+                  {/* <button className="flex items-center space-x-2">
                     <FaHeart className="text-gray-600" size={20} />
                     <span>Wishlist</span>
-                  </button>
+                  </button> */}
                   {isAuth && token ? (
                     <button className="text-gray-600 hover:text-gray-900 font-semibold">
                       Logout

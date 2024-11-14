@@ -35,13 +35,7 @@ export const cartReducer = (state = initState, { type, payload }) => {
         isError: false,
       };
     }
-    case PATCH_CART_REQUEST: {
-      return {
-        ...state,
-        isLoading: true,
-        isError: false,
-      };
-    }
+  
     case DELETE_CART_REQUEST: {
       return {
         ...state,
@@ -63,13 +57,7 @@ export const cartReducer = (state = initState, { type, payload }) => {
         isError: true,
       };
     }
-    case PATCH_CART_FAILURE: {
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    }
+   
     case DELETE_CART_FAILURE: {
       return {
         ...state,

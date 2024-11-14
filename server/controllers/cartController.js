@@ -7,7 +7,7 @@ const cartController = Router();
 
 cartController.get("/get", authentication, async (req, res) => {
   const { userId } = req.body;
-
+console.log(userId,"userId")
   const cart_data = await Cart.find({ userId });
 
   res.send({ cartData: cart_data });
@@ -50,13 +50,16 @@ cartController.delete("/delete/:cartId", authentication, async (req, res) => {
 });
 
 cartController.patch("/:cartId", authentication, async (req, res) => {
-  const { userId } = req.body;
-  const { qty } = req.body;
+  const { userId,qty } = req.body
   const { cartId } = req.params;
-
+console.log(req.body,"bodyyyyy")
+if (qty && typeof qty !== 'number') {
+  return res.status(400).send({ msg: 'Quantity (qty) must be a valid number' });
+}
+else{
   const updatedCart = await Cart.findByIdAndUpdate(
     { _id: cartId, userId },
-    { $inc: { qty: qty } }
+    { $inc: { qty: Number(qty) } }
   );
   console.log(updatedCart);
   res.send({
@@ -64,6 +67,7 @@ cartController.patch("/:cartId", authentication, async (req, res) => {
     qty: updatedCart,
     payload: qty,
   });
+}
 });
 
 module.exports = {

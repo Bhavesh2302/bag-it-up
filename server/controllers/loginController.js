@@ -30,7 +30,7 @@ loginController.post("/", async (req, res) => {
             }})
         }
         else{
-            res.status(400).send({msg:"Email and password is incorrec"})
+            res.status(400).send({msg:"Email and password is incorrect"})
         }
     });
   }

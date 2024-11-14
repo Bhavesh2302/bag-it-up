@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 const ImageViewer = ({ bag }) => {
 
@@ -10,11 +10,21 @@ const ImageViewer = ({ bag }) => {
   
   },[bag])
  
-  console.log(imageUrls[0],"hhhiiiiiiiiiii")
-  const [selectedImage, setSelectedImage] = useState(
-    imageUrls.length > 0 ? imageUrls[0] : bag?.image_url_1
-  );
-  console.log(selectedImage,"image")
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Update selectedImage once imageUrls is populated
+  useEffect(() => {
+    if (imageUrls.length > 0) {
+      setSelectedImage(imageUrls[0]);
+    }
+  }, [imageUrls]);
+
+  console.log(selectedImage, "Selected Image");
+  // console.log(imageUrls[0],"hhhiiiiiiiiiii")
+  // const [selectedImage, setSelectedImage] = useState(
+  //   imageUrls.length > 0 ? imageUrls[0] : bag?.image_url_1
+  // );
+  // console.log(selectedImage,"image")
 
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);

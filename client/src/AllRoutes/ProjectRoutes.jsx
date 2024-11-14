@@ -9,6 +9,7 @@ import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import Cart from "../Pages/Cart";
 import AdminDashboard from "../Pages/AdminDashboard";
 import SingleProduct from "../Pages/SingleProduct";
+import NoData from "../Pages/NoData";
 
 const ProjectRoutes = () => {
   return (
@@ -33,6 +34,12 @@ const ProjectRoutes = () => {
             < AdminDashboard/>
           </AdminPrivateRoute>
         }
+      /> 
+      <Route
+        path="/*"
+        element = {
+       <NoData/>
+         }
       /> 
     </Routes>
   );

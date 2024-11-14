@@ -43,7 +43,7 @@ const Banners = () => {
               </p>
               <div className="flex items-center justify-center mt-[10px]">
               <button
-                className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
+                className="text-white text-center rounded-[6px] h-10 sm:h-8 max-w-fit m:p px-5 hover:text-white font-semibold bg-customBlue sm:block md:block lg:block"
                 onClick={() => navigate("/bag")}
               >
                 Shop Now 

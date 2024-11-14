@@ -2,6 +2,8 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const authentication = (req, res, next) => {
+  console.log(req.body, "reqbody")
+
   if (!req.headers.authorization) {
     res.status(401).send({ msg: "Please Try Again!" });
   }
