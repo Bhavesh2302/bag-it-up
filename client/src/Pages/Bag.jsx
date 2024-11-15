@@ -10,6 +10,7 @@ const Bag = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.bag);
   const { sort, brand, category, size } = useSelector((state) => state.filter);
+
   const navigate = useNavigate();
   console.log(sort, brand, category, size, "filters");
 

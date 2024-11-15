@@ -1,27 +1,75 @@
-// Navbar.js
 import { ClickAwayListener } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaShoppingCart,
   FaHeart,
   FaUserCircle,
   FaBars,
-  FaSearch
+  FaSearch,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { userLogout } from "../Redux/Reducers/userAuthReducer/action";
+import { getBagData } from "../Redux/Reducers/bagReducer/action";
 
 const Navbar = () => {
   const { isAuth, token } = useSelector((state) => state.auth);
+  const { sort, brand, category, size } = useSelector((state) => state.filter);
+  let { data } = useSelector((state) => state.bag);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleLogout = () =>{
-    navigate("/login")
- dispatch(userLogout())
+  useEffect(() => {
+    const search = searchParams.get("search") || "";
+    console.log(search);
+    if (search) {
+      setSearchTerm(search);
+      // setSearchQuery(search);
+    }
+  }, [searchParams]);
+
+
+  const searchFunctionality = () =>{
+    console.log(searchParams,"seacrchParams")
+    // dispatch(
+    //   getBagData({
+    //     search: searchParams,
+    //     sort,
+    //     brand,
+    //     category,
+    //     size,
+    //     skip: 0,
+    //   })
+    // )
+    //   .then((res) => {
+    //     if (res.type == "GET_BAG_SUCCESS") {
+    //       navigate("/bag", { state: { data: res.payload } });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
+  const handleLogout = () => {
+    navigate("/login");
+    dispatch(userLogout());
+  };
+
+  const handleSearchTerm = (e) => {
+    setSearchTerm(e.target.value);
+    setSearchParams(e.target.value)
+  };
+  console.log(searchTerm)
+
+  const handleSearchBags = () => {
+    // setSearchQuery(searchTerm);
+    // setSearchParams({ search: searchTerm });
+    searchFunctionality()
+  };
 
   return (
     <nav className="relative w-full shadow-md">
@@ -37,14 +85,15 @@ const Navbar = () => {
           <div className="w-full">
             <input
               type="text"
-              id="simple-search"
+              name="searchTerm"
+              value={searchTerm}
+              onChange={handleSearchTerm}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-[5px] focus-visible:outline-none block w-full pl-2 h-10 sm:h-8 md:h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
-              placeholder="Search branch name..."
-              required
+              placeholder="Search bags..."
             />
           </div>
           <button
-            type="submit"
+            onClick={handleSearchBags}
             className="text-sm font-medium text-white bg-blue-700 rounded-r-[5px] h-10 w-10 sm:h-8 md:h-8 flex items-center justify-center"
           >
             <FaSearch />
@@ -52,7 +101,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-end gap-3 w-1/4">
           <FaShoppingCart
-          onClick={()=>navigate("/cart")}
+            onClick={() => navigate("/cart")}
             className="text-gray-600 cursor-pointer lg:block md:block"
             size={24}
           />
@@ -62,17 +111,17 @@ const Navbar = () => {
           /> */}
           {isAuth && token ? (
             <div>
-            <img
-              src="https://via.placeholder.com/40"
-              alt="User Avatar"
-              className="w-10 h-10 rounded-full cursor-pointer sm:hidden"
-            />
-            <button
-              className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+              <img
+                src="https://via.placeholder.com/40"
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full cursor-pointer sm:hidden"
+              />
+              <button
+                className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <button
@@ -82,7 +131,7 @@ const Navbar = () => {
               Login
             </button>
           )}
-          
+
           <FaBars
             className="text-gray-600 cursor-pointer sm:block md:hidden relative"
             size={24}
@@ -92,8 +141,11 @@ const Navbar = () => {
             <ClickAwayListener onClickAway={() => setIsMenuOpen(false)}>
               <div className="md:hidden bg-[#FFF] border-gray absolute right-0 top-16 z-[9999999999999999999999]">
                 <div className="flex flex-col items-start px-4 py-2 space-y-2">
-                  <button className="flex items-center space-x-2 " onClick={()=>navigate("/cart")}>
-                    <FaShoppingCart   className="text-gray-600" size={20} />
+                  <button
+                    className="flex items-center space-x-2 "
+                    onClick={() => navigate("/cart")}
+                  >
+                    <FaShoppingCart className="text-gray-600" size={20} />
                     <span>Cart</span>
                   </button>
                   {/* <button className="flex items-center space-x-2">

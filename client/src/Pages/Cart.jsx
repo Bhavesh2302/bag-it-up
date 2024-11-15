@@ -12,20 +12,15 @@ const Cart = () => {
   console.log(cartData)
 
   useEffect(()=>{
-  if(cartData.length === 0){
     dispatch(getCartData(token))
-  }
-  },[cartData.length])
+  },[dispatch,token])
 
   const Total = useMemo(()=>{
-    let totalPrice =cartData?.reduce((acc,item)=> (acc + (item.price*item.qty)),0)
-    return totalPrice
-  },0)
-  console.log(Total,"Total")
-  const cartLength = useMemo(()=>{
-    let cardDataLength =cartData?.reduce((acc,item) =>(acc + item.qty),0)
-    return cardDataLength
-  },0)
+let totalPrice = cartData?.reduce((acc,item)=> (acc + (item.price*item.qty)),0)
+const cartLength = cartData?.reduce((acc,item) =>(acc + item.qty),0)
+return {totalPrice,cartLength}
+  },[cartData])
+   
 
   const handleChangeQuantity = (id, Quantity,value) =>{
     const payload = {
@@ -82,8 +77,8 @@ const Cart = () => {
                 </div>
                 </div>
                 <div className="md:pl-4 flex sm:gap-2 md:gap-4 items-center">
+                <p className="font-medium text-base">Quantity:</p>
                   <div className="flex items-center gap-4 w-full sm:w-1/2 md:w-full mx-auto">
-                    <p className="font-medium text-base">Quantity:</p>
                     <button
                       className="text-sm font-bold px-2 py-1 border border-gray-300 disabled:opacity-50"
                       disabled={item.qty === 1}
@@ -116,8 +111,8 @@ const Cart = () => {
       {/* Total price box */}
       <div className={`w-4/5 sm:w-4/5 md:w-4/5 m-auto ${cartData.length === 0 ? "hidden" : "block"}`}>
         <div className="flex justify-between pt-5 mb-10 pl-5 items-center">
-          <p className="text-sm font-semibold">Price ({cartLength} Items.)</p>
-          <p className="text-sm font-semibold">₹ {Total}</p>
+          <p className="text-sm font-semibold">Price ({Total.cartLength} Items.)</p>
+          <p className="text-sm font-semibold">₹ {Total.totalPrice}</p>
         </div>
         <div className="flex justify-between mt-2 mb-10 pl-5 items-center">
           <p className="text-sm font-semibold">Discount</p>
@@ -129,14 +124,14 @@ const Cart = () => {
         </div>
         <div className="flex justify-between pb-5 mt-2 mb-10 pl-5 items-center">
           <p className="text-lg font-semibold">Total Payable Amount</p>
-          <p className="text-lg font-semibold">₹ {Total}</p>
+          <p className="text-lg font-semibold">₹ {Total.totalPrice}</p>
         </div>
         <div className="flex justify-center pb-5 mt-2 mb-10 pl-5 items-center">
           <button
             className="text-xs sm:text-sm w-1/2 md:w-3/5 block mx-auto rounded-[6px]  bg-customBlue  text-white py-2"
             
           >
-            Pay ₹ {Total}
+            Pay ₹ {Total.totalPrice}
           </button>
         </div>
       </div>

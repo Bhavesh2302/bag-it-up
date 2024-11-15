@@ -3,7 +3,7 @@ const { Bag } = require("../models/bagModel");
 const bagController = Router();
 
 bagController.get("/get", async (req, res) => {
-  const { brand, category, size, color, sort, skip,limit} = req.query;
+  const { brand, category, size, color, sort, skip,limit,search} = req.query;
   console.log(req.query, "query")
   console.log(sort, "sort")
   let aggregatePipeline = [];
@@ -14,6 +14,17 @@ bagController.get("/get", async (req, res) => {
     if (category) matchingCondition.push({ category: { $in: category } });
     if (size) matchingCondition.push({ size: { $in: size } });
     if (color) matchingCondition.push({ color: { $in: color } });
+
+    if (search) {
+      matchingCondition.push({
+        $or: [
+          { brand: { $regex: search, $options: "i" } },
+          { category: { $regex: search, $options: "i" } },
+          { size: { $regex: search, $options: "i" } },
+          { color: { $regex: search, $options: "i" } },
+        ],
+      });
+    }
 
     if (matchingCondition.length > 0) {
       aggregatePipeline.push({ $match: { $and: matchingCondition } });
@@ -39,6 +50,7 @@ bagController.get("/get", async (req, res) => {
     res.send(500).send({ msg: "Something went wrong!" });
   }
 });
+
 
 module.exports = {
   bagController,
