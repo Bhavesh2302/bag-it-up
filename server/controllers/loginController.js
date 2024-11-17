@@ -8,13 +8,14 @@ const loginController = Router();
 
 loginController.post("/", async (req, res) => {
   const { email, password} = req.body;
-
+console.log(req.body)
   const user = await User.findOne({ email: email });
   if(user){
+    console.log(user)
     const hash = user.password
     bcrypt.compare(password, hash, function(err, result) {
         if(err){
-            res.status(400).send({msg:"Error occured"})
+            res.status(401).send({msg:"Error occured"})
         }
         if(result === true){
             const token = jwt.sign({ userId: user._id ,mobile: user.mobile}, process.env.secret);
@@ -30,10 +31,13 @@ loginController.post("/", async (req, res) => {
             }})
         }
         else{
-            res.status(400).send({msg:"Email and password is incorrect"})
+            res.status(401).send({msg:"Email and password is incorrect"})
         }
     });
   }
+  else{
+    res.status(400).send({msg:"User Not Found"})
+}
 
   
 });

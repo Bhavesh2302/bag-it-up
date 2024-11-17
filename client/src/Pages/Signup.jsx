@@ -2,10 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { userSignup } from "../Redux/Reducers/userAuthReducer/action";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { toaster } from "../utils/toastConfig";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [signupForm, setSignupForm] = useState({
     firstname: "",
     lastname: "",
@@ -32,9 +35,20 @@ const Signup = () => {
     };
     dispatch(userSignup(payload))
       .then((res) => {
-        console.log(res, "signupres");
-      })
+        if (res?.type === "USER_SIGNUP_SUCCESS") {
+          toast.success("Signup Sussessful!", toaster(1500));
+          navigate("/login");
+        } else
+          toast.error(
+            "Signup Fail! Please Try Again",
+            toaster(1500)
+          );
+            })
       .catch((err) => {
+        toast.error(
+          "Signup Fail! Please Try Again",
+          toaster(1500)
+        );
         console.log(err);
       });
   };

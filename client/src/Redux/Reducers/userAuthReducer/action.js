@@ -22,7 +22,10 @@ export const userSignup = (payload) => (dispatch) => {
     },
   }).then((res) => {
         // console.log(res.data)
-        return dispatch({ type: USER_SIGNUP_SUCCESS });
+        if (res.data.msg === "Signup Successfull") {
+            return dispatch({ type: USER_SIGNUP_SUCCESS });
+        } else return dispatch({type: USER_SIGNUP_FAILURE});
+        
       })
       .catch((err) => {
         return dispatch({ type: USER_SIGNUP_FAILURE });
@@ -42,7 +45,9 @@ export const userLogin = (payload) => (dispatch) => {
   }).then((res) => {
     // console.log(res.data)
     // const payload = {token:res.data.token, user: res.data.userInfo}
-    return dispatch({ type: USER_LOGIN_SUCCESS ,payload:{token:res.data.token, user: res.data.userInfo}});
+    if (res.data.msg === "Login Successful") {
+      return dispatch({ type: USER_LOGIN_SUCCESS ,payload:{token:res.data.token, user: res.data.userInfo}});
+    } else return dispatch({ type: USER_LOGIN_FAILURE });
   })
   .catch((err) => {
     return dispatch({ type: USER_LOGIN_FAILURE });

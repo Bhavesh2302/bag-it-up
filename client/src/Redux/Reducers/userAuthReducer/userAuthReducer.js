@@ -22,6 +22,9 @@ export const userAuthReducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: true,
         isError: false,
+        token:null,
+        isAuth:false,
+        userData:{}
       };
     }
 
@@ -43,6 +46,9 @@ export const userAuthReducer = (state = initState, { type, payload }) => {
         ...state,
         isError: true,
         isLoading: false,
+        isAuth:false,
+        token:null,
+        userData:{}
       };
     }
 

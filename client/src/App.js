@@ -5,10 +5,12 @@ import Home from './Pages/Home';
 import ProjectRoutes from './AllRoutes/ProjectRoutes';
 import Navbar from './Components/Navbar';
 import Footers from './Components/Footers';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App w-full m-auto">
+      <ToastContainer/>
       <Navbar/>
       <ProjectRoutes/>
       <Footers/>

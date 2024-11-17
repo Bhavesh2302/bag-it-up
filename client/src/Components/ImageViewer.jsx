@@ -31,8 +31,8 @@ const ImageViewer = ({ bag }) => {
   };
 
   return (
-    <div className="w-full flex">
-      <div className="flex flex-col gap-4 mt-[20px]">
+    <div className="w-full flex gap-2">
+      <div className="flex flex-col  items-start justify-start sm:mt-[12px] mt-[20px]">
         {imageUrls.map((imageUrl, index) => (
           <div key={index} className="cursor-pointer" onClick={() => handleImageClick(imageUrl)}>
             <img
@@ -43,9 +43,9 @@ const ImageViewer = ({ bag }) => {
           </div>
         ))}
       </div>
-      <div className="mt-[20px]">
+      <div className="sm:mt-[15px] md:mt-[20px]">
         <img
-          className="w-[370px] h-[370px]"
+          className="sm:w-[300px] sm:h-[300px] md:w-[370px] md:h-[370px]"
           src={selectedImage}
           alt="selected_image"
         />

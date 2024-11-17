@@ -97,6 +97,7 @@ console.log(newBrand)
         checkedValues={sort === "1" ? ["Low to High"] : ["High to Low"]}
         isRadio={true}
       />
+      
     </div>
   );
 };

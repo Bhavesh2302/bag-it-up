@@ -2,55 +2,55 @@ const { Router } = require("express");
 const { Bag } = require("../models/bagModel");
 const bagController = Router();
 
+
 bagController.get("/get", async (req, res) => {
-  const { brand, category, size, color, sort, skip,limit,search} = req.query;
-  console.log(req.query, "query")
-  console.log(sort, "sort")
+  const { brand, category, size, color, sort, skip, limit, search } = req.query;
+console.log(req.query,"query")
   let aggregatePipeline = [];
-  let matchingCondition = [];
+  let matchStage = {};
 
   try {
-    if (brand) matchingCondition.push({ brand: { $in: brand } });
-    if (category) matchingCondition.push({ category: { $in: category } });
-    if (size) matchingCondition.push({ size: { $in: size } });
-    if (color) matchingCondition.push({ color: { $in: color } });
+    if (brand) matchStage.brand = { $in: brand };
+    if (category) matchStage.category = { $in: category };
+    if (size) matchStage.size = { $in: size };
+    if (color) matchStage.color = { $in: color };
 
     if (search) {
-      matchingCondition.push({
-        $or: [
-          { brand: { $regex: search, $options: "i" } },
-          { category: { $regex: search, $options: "i" } },
-          { size: { $regex: search, $options: "i" } },
-          { color: { $regex: search, $options: "i" } },
-        ],
-      });
+      matchStage.$or = [
+        { brand: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } },
+        { size: { $regex: search, $options: "i" } },
+        { color: { $regex: search, $options: "i" } },
+      ];
     }
 
-    if (matchingCondition.length > 0) {
-      aggregatePipeline.push({ $match: { $and: matchingCondition } });
+    if (Object.keys(matchStage).length > 0) {
+      aggregatePipeline.push({ $match: matchStage });
     }
 
     if (sort) {
       aggregatePipeline.push({ $sort: { discounted_price: Number(sort) } });
     }
 
-    if (aggregatePipeline.length > 0) {
-      const bagData = await Bag.aggregate(aggregatePipeline)
-        .skip(Number(skip) || 0)
-        .limit(limit || 12);
-      res.send({ msg: "Bag data successfully loaded", bagData: bagData });
-    } else {
-      const query = Bag.find().skip(Number(skip) || 0).limit(limit || 12);
-      if (sort) query.sort({ discounted_price: Number(sort) });
-      bagData = await query;
-      res.send({ msg: "Bag data successfully loaded", bagData: bagData });
-    }
-    }
-   catch (err) {
-    res.send(500).send({ msg: "Something went wrong!" });
+    const totalLengthData = await Bag.countDocuments();
+
+    const bagData = await Bag.aggregate(aggregatePipeline)
+      .skip(Number(skip) || 0)
+      .limit(Number(limit) || 12);
+
+    const totalFilteredCount = await Bag.aggregate(aggregatePipeline).count("count");
+
+    res.send({
+      msg: "Bag data successfully loaded",
+      bagData: bagData,
+      totalLength: totalLengthData,
+      totalFilteredCount: totalFilteredCount[0].count,
+    });
+  } catch (err) {
+    console.error(err); // Log the error for debugging
+    res.status(500).send({ msg: "Internal Server Error" });
   }
 });
-
 
 module.exports = {
   bagController,

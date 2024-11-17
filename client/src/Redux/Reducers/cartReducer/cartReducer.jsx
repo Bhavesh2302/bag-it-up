@@ -70,7 +70,7 @@ export const cartReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        cartData: [...state.cart, payload],
+        cartData: [...state.cartData, payload],
         isError: false,
       };
     }

@@ -4,6 +4,8 @@ const initState = {
   isLoading: false,
   isError: false,
   data: [],
+  totalLength:null,
+  totalFilteredCount:null
 };
 
 export const bagReducer = (state = initState, { type, payload }) => {
@@ -20,7 +22,9 @@ export const bagReducer = (state = initState, { type, payload }) => {
           ...state,
           isError: false,
           isLoading: false,
-          data:[...payload]
+          data:[...payload.data],
+          totalLength: payload.totalLength,
+          totalFilteredCount: payload.totalFilteredCount
         };
       }
     case GET_BAG_FAILURE: {

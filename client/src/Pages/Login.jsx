@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../Redux/Reducers/userAuthReducer/action";
-import {Link} from 'react-router-dom'
+import {Link, Navigate, useLocation, useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import { toaster } from "../utils/toastConfig";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const isAuth = useSelector((state) => state.auth);
   console.log(isAuth);
   const [loginForm, setLoginForm] = useState({
@@ -12,6 +16,8 @@ const Login = () => {
     password: "",
   });
   const [show, setShow] = useState(false)
+  const location = useLocation()
+  const comingFrom = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) =>{
     let {name,value} = e.target;
@@ -31,10 +37,22 @@ const Login = () => {
     };
     dispatch(
       userLogin(payload))?.then((res) => {
+        if (res?.type === "USER_LOGIN_SUCCESS") {
+          toast.success("Login Sussessful!", toaster(1500));
+          navigate("/");
+        } else
+          toast.error(
+            "Login Fail! Please enter correct cridentials",
+            toaster(1500)
+          );
         console.log(res,"formResponse");
       })
       .catch((err) => {
-        return err;
+        toast.error(
+          "Login Fail! Please enter correct cridentials",
+          toaster(1500)
+        );
+        console.log(err)
       })
   };
 

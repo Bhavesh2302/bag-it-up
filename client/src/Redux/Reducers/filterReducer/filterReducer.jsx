@@ -4,7 +4,7 @@ const initState = {
   brand: [],
   category: [],
   size: [],
-  sort: "",
+  sort: "1",
 };
 
 export const filterReducer = (state = initState, { type, payload }) => {

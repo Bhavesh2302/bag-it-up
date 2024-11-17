@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { userLogout } from "../Redux/Reducers/userAuthReducer/action";
 import { getBagData } from "../Redux/Reducers/bagReducer/action";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { isAuth, token } = useSelector((state) => state.auth);
@@ -21,39 +23,38 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   // const [searchQuery, setSearchQuery] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    const search = searchParams.get("search") || "";
-    console.log(search);
-    if (search) {
-      setSearchTerm(search);
-      // setSearchQuery(search);
-    }
-  }, [searchParams]);
+  // useEffect(() => {
+  //   const search = searchParams.get("search") || "";
+  //   console.log(search);
+  //   if (search) {
+  //     setSearchTerm(search);
+  //     // setSearchQuery(search);
+  //   }
+  // }, [searchParams]);
 
-
-  const searchFunctionality = () =>{
-    console.log(searchParams,"seacrchParams")
-    // dispatch(
-    //   getBagData({
-    //     search: searchParams,
-    //     sort,
-    //     brand,
-    //     category,
-    //     size,
-    //     skip: 0,
-    //   })
-    // )
-    //   .then((res) => {
-    //     if (res.type == "GET_BAG_SUCCESS") {
-    //       navigate("/bag", { state: { data: res.payload } });
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  }
+  const searchFunctionality = () => {
+    // console.log(searchParams,"seacrchParams")
+    dispatch(
+      getBagData({
+        search: searchTerm,
+        sort,
+        brand,
+        category,
+        size,
+        skip: 0,
+      })
+    )
+      .then((res) => {
+        if (res.type == "GET_BAG_SUCCESS") {
+          navigate("/bag", { state: { data: res.payload } });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const handleLogout = () => {
     navigate("/login");
     dispatch(userLogout());
@@ -61,14 +62,14 @@ const Navbar = () => {
 
   const handleSearchTerm = (e) => {
     setSearchTerm(e.target.value);
-    setSearchParams(e.target.value)
+    // setSearchParams(e.target.value)
   };
-  console.log(searchTerm)
+  console.log(searchTerm);
 
   const handleSearchBags = () => {
     // setSearchQuery(searchTerm);
     // setSearchParams({ search: searchTerm });
-    searchFunctionality()
+    searchFunctionality();
   };
 
   return (
@@ -78,7 +79,8 @@ const Navbar = () => {
           <img
             src="/bag_images/BagItUp_Logo.png"
             alt="Logo"
-            className="w-16 h-16"
+            className="w-16 h-16 cursor-pointer"
+            onClick={()=>navigate("/")}
           />
         </div>
         <div className="w-[35%] flex items-center justify-center sm:w-[40%]">
@@ -139,7 +141,7 @@ const Navbar = () => {
           />
           {isMenuOpen && (
             <ClickAwayListener onClickAway={() => setIsMenuOpen(false)}>
-              <div className="md:hidden bg-[#FFF] border-gray absolute right-0 top-16 z-[9999999999999999999999]">
+              <div className="md:hidden border bg-[#FFF] border-gray absolute right-[10px] top-16 z-[9999999999999999999999]">
                 <div className="flex flex-col items-start px-4 py-2 space-y-2">
                   <button
                     className="flex items-center space-x-2 "
@@ -153,7 +155,7 @@ const Navbar = () => {
                     <span>Wishlist</span>
                   </button> */}
                   {isAuth && token ? (
-                    <button className="text-gray-600 hover:text-gray-900 font-semibold">
+                    <button className="text-gray-600 hover:text-gray-900 font-semibold" onClick={handleLogout}>
                       Logout
                     </button>
                   ) : (
