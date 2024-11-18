@@ -113,7 +113,7 @@ const Navbar = () => {
       onMouseLeave={() => setShowTooltip(false)}
     >
       <div className="w-10 h-10 text-white font-semibold pl-2.5 rounded-full bg-customBlue flex items-center">
-        {/* {userData?.firstname[0]}{userData?.lastname[0]} */}
+        {userData?.firstname[0]}{userData?.lastname[0]}
       </div>
 
       {showTooltip && (
