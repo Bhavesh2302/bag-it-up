@@ -28,7 +28,6 @@ signupController.post("/", async (req, res) => {
             role,
             mobile,
           });
-          console.log(userDetails)
           await userDetails.save()
           res.status(200).send({msg :"Signup Successfull"})
         }

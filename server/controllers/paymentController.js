@@ -6,7 +6,6 @@ const crypto = require("crypto")
 const paymentController = Router()
 
 paymentController.post("/orders", async(req,res)=>{
-    console.log(req.body)
 
     let key_id = process.env.razorpay_key_id;
     let key_secret = process.env.razorpay_key_secret;
@@ -19,7 +18,6 @@ try {
         receipt: crypto.randomBytes(10).toString("hex"),
     }
     instance.orders.create(options, (err,order)=>{
-        console.log(order,"'order")
    if(err){
     res.status(500).send({ msg: "Something went wrong" });
    }else if(order){
@@ -38,7 +36,6 @@ try {
 })
 
 paymentController.post("/verify", async (req, res) => {
-    console.log(req.body,"request verify")
     try {
         const {razorpay_order_id,  razorpay_payment_id, razorpay_signature}= req.body;
         const signature = razorpay_order_id + "|" + razorpay_payment_id

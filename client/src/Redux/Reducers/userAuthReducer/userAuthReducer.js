@@ -37,7 +37,7 @@ export const userAuthReducer = (state = initState, { type, payload }) => {
         isAuth:true,
         // isUserAuth: payload?.role === "user",
         // isAdminAuth: payload?.role !== "user",
-        userData: payload,
+        userData: payload.user,
       };
     }
 
@@ -56,8 +56,9 @@ export const userAuthReducer = (state = initState, { type, payload }) => {
       return{
         ...state,
         isAuth : false,
-        // isUserAuth:false,
-        // isAdminAuth:false,
+        userData:{},
+        isLoading:false,
+        isError:false,
         token:null
       }
     }

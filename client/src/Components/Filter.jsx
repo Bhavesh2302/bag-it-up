@@ -23,7 +23,6 @@ const Filters = () => {
     } else {
       newBrand.push(val);
     }
-console.log(newBrand)
     dispatch(filterBrand(newBrand));
   };
 

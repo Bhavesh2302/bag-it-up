@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customBlue:"#1d4ed8"
+        customBlue:"#1d4ed8",
       }
     },
     screens: {

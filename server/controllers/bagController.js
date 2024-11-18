@@ -5,7 +5,6 @@ const bagController = Router();
 
 bagController.get("/get", async (req, res) => {
   const { brand, category, size, color, sort, skip, limit, search } = req.query;
-console.log(req.query,"query")
   let aggregatePipeline = [];
   let matchStage = {};
 

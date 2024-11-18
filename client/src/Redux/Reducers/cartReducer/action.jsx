@@ -57,7 +57,6 @@ export const deleteItemFromCart = (cartID,token) =>(dispatch) =>{
 }
 
 export const changeQuantity = (cartID,token,payload) =>(dispatch) =>{
-    console.log(payload,"payload qty")
     dispatch({type : PATCH_CART_REQUEST})
     return axios({
         method: "PATCH",

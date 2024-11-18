@@ -11,13 +11,11 @@ import { toaster } from "../utils/toastConfig";
 const ProductOverview = ({ singleBag }) => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
-  console.log(token);
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
     dispatch(addToCart(singleBag?._id, token))
       .then((res) => {
-        console.log(res,"bag added")
         if (res.type === "ADD_TO_CART_SUCCESS") {
           toast.success("Item added to cart", toaster(1500));
           dispatch(getCartData(token))

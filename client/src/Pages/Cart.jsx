@@ -14,11 +14,10 @@ const Cart = () => {
   const dispatch = useDispatch();
   const  navigate = useNavigate()
   const { cartData } = useSelector((state) => state.cart);
-  const { token } = useSelector((state) => state.auth);
-  console.log(cartData);
+  const { isAuth ,token } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getCartData(token));
+    isAuth && dispatch(getCartData(token));
   }, [dispatch, token]);
 
   const Total = useMemo(() => {
@@ -74,7 +73,6 @@ const Cart = () => {
         try {
           const verifyUrl = `${process.env.REACT_APP_BASE_URL}/api/payment/verify`;
           const { data } = await axios.post(verifyUrl, response);
-          console.log(data, "data")
           if(data && data.status && data.status == 1){
               toast.success("Payment Successful!", toaster(1500));
               navigate("/");

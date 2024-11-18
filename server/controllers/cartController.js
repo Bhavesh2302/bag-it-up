@@ -7,7 +7,6 @@ const cartController = Router();
 
 cartController.get("/get", authentication, async (req, res) => {
   const { userId } = req.body;
-console.log(userId,"userId")
   const cart_data = await Cart.find({ userId });
 
   res.send({ cartData: cart_data });
@@ -15,13 +14,10 @@ console.log(userId,"userId")
 
 cartController.post("/add/:bagId", authentication, async (req, res) => {
   const { userId } = req.body;
-  console.log(userId);
   const { bagId } = req.params;
   const isExist = await Cart.findOne({ bagId: bagId, userId: userId });
-  console.log("isExist", isExist);
   if (!isExist) {
     const bag = await Bag.findOne({ _id: bagId });
-    console.log(bag,"bagggggggggg")
     const payload = {
       price: bag.discounted_price,
       qty: 1,
@@ -44,15 +40,12 @@ cartController.delete("/delete/:cartId", authentication, async (req, res) => {
   const { userId } = req.body;
   const { cartId } = req.params;
   const deletedItem = await Cart.deleteOne({ _id: cartId, userId });
-  console.log(deletedItem);
-
   res.send({ msg: "Item has been deleted" });
 });
 
 cartController.patch("/:cartId", authentication, async (req, res) => {
   const { userId,qty } = req.body
   const { cartId } = req.params;
-console.log(req.body,"bodyyyyy")
 if (qty && typeof qty !== 'number') {
   return res.status(400).send({ msg: 'Quantity (qty) must be a valid number' });
 }
@@ -61,7 +54,6 @@ else{
     { _id: cartId, userId },
     { $inc: { qty: Number(qty) } }
   );
-  console.log(updatedCart);
   res.send({
     msg: "qty has been updated",
     qty: updatedCart,

@@ -20,12 +20,9 @@ const SingleProduct = () => {
   useEffect(() => {
     if (id) {
       const singleSelectedBag = data?.find((item) => item._id == id);
-      // console.log(singleSelectedBag,"singleSelectedbAg")
       singleSelectedBag && setSingleBag(singleSelectedBag);
     }
   }, [id,data]);
-  console.log(data);
-  console.log(id);
   return <div className="w-[80%] m-auto">
     <ProductOverview singleBag = {singleBag}/>
   </div>;

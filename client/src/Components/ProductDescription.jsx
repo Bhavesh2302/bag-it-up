@@ -2,23 +2,18 @@ import React from "react";
 import StarRating from "./StarRating";
 
 const ProductDescription = ({ singleBag }) => {
-    console.log(singleBag, "singleBagggggg")
   return (
     <div className="w-full ">
         <div className="text-start text-[#646464] font-bold text-2xl mt-[10px]">
           {singleBag.title}
         </div>
         <div className="text-start text-[#969491] font-bold text-md mt-[10px]">
-            {singleBag.brand}
-          {singleBag.brand.charAt(0).toUpperCase() + singleBag.brand.slice(1).toLowerCase()}
+          {singleBag?.brand?.charAt(0).toUpperCase() + singleBag?.brand?.slice(1).toLowerCase()}
       </div>
       <div className="text-start text-[#646464] font-bold text-md mt-[10px]">
-      {singleBag.category}
-       {singleBag.category.charAt(0).toUpperCase() +  singleBag.category.slice(1).toLowerCase()}
+       {singleBag?.category.charAt(0).toUpperCase() +  singleBag?.category.slice(1).toLowerCase()}
       </div>
-      {/* <div className="mt-[10px]">
-      <StarRating rating={singleBag.rating}/>
-      </div> */}
+    
       <div className="text-start text-[#646464] font-bold text-md mt-[10px]">
       &#8377;  {singleBag.actual_price}
       </div>

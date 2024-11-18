@@ -15,27 +15,24 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
-  const { isAuth, token } = useSelector((state) => state.auth);
+  const { isAuth, token, userData } = useSelector((state) => state.auth);
   const { sort, brand, category, size } = useSelector((state) => state.filter);
   let { data } = useSelector((state) => state.bag);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
-  // const [searchQuery, setSearchQuery] = useState("");
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [showTooltip, setShowTooltip] =useState(false)
 
-  // useEffect(() => {
-  //   const search = searchParams.get("search") || "";
-  //   console.log(search);
-  //   if (search) {
-  //     setSearchTerm(search);
-  //     // setSearchQuery(search);
-  //   }
-  // }, [searchParams]);
 
+  const handleKeyDown = (e) =>{
+     if(e.key === "Enter"){
+        e.preventDefault()
+        searchFunctionality()
+     }
+  }
+  
   const searchFunctionality = () => {
-    // console.log(searchParams,"seacrchParams")
     dispatch(
       getBagData({
         search: searchTerm,
@@ -62,13 +59,9 @@ const Navbar = () => {
 
   const handleSearchTerm = (e) => {
     setSearchTerm(e.target.value);
-    // setSearchParams(e.target.value)
   };
-  console.log(searchTerm);
 
   const handleSearchBags = () => {
-    // setSearchQuery(searchTerm);
-    // setSearchParams({ search: searchTerm });
     searchFunctionality();
   };
 
@@ -90,6 +83,7 @@ const Navbar = () => {
               name="searchTerm"
               value={searchTerm}
               onChange={handleSearchTerm}
+              onKeyDown={handleKeyDown}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-[5px] focus-visible:outline-none block w-full pl-2 h-10 sm:h-8 md:h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Search bags..."
             />
@@ -104,7 +98,7 @@ const Navbar = () => {
         <div className="flex items-center justify-end gap-3 w-1/4">
           <FaShoppingCart
             onClick={() => navigate("/cart")}
-            className="text-gray-600 cursor-pointer lg:block md:block"
+            className="text-gray-600 cursor-pointer sm:hidden lg:block md:block"
             size={24}
           />
           {/* <FaHeart
@@ -112,18 +106,31 @@ const Navbar = () => {
             size={24}
           /> */}
           {isAuth && token ? (
-            <div>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full cursor-pointer sm:hidden"
-              />
+            <div className="flex gap-2">
+              <div
+      className="relative inline-block"
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <div className="w-10 h-10 text-white font-semibold pl-2.5 rounded-full bg-customBlue flex items-center">
+        {userData?.firstname[0]}{userData?.lastname[0]}
+      </div>
+
+      {showTooltip && (
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-600 text-white text-sm rounded shadow-lg">
+          {`${userData?.firstname} ${userData?.lastname}`}
+        </div>
+      )}
+    </div>
+
+              <div>
               <button
                 className="text-white text-center rounded-[6px] h-10 max-w-fit px-5 hover:text-white font-semibold bg-customBlue sm:hidden md:block lg:block"
                 onClick={handleLogout}
               >
                 Logout
               </button>
+              </div>
             </div>
           ) : (
             <button
@@ -143,29 +150,41 @@ const Navbar = () => {
             <ClickAwayListener onClickAway={() => setIsMenuOpen(false)}>
               <div className="md:hidden border bg-[#FFF] border-gray absolute right-[10px] top-16 z-[9999999999999999999999]">
                 <div className="flex flex-col items-start px-4 py-2 space-y-2">
+                {isAuth && token && (
+                    <div className="text-gray-600 font-semibold">
+                         {`${userData?.firstname} ${userData?.lastname}`}
+                    </div>
+                
+                  )}
+                  <div className="w-full hover:bg-gray-400">
                   <button
                     className="flex items-center space-x-2 "
                     onClick={() => navigate("/cart")}
                   >
-                    <FaShoppingCart className="text-gray-600" size={20} />
+                    <FaShoppingCart className="text-gray-600" size={14} />
                     <span>Cart</span>
                   </button>
+                  </div>
+
                   {/* <button className="flex items-center space-x-2">
                     <FaHeart className="text-gray-600" size={20} />
                     <span>Wishlist</span>
                   </button> */}
+                  <div className="w-full hover:bg-gray-400 text-start">
                   {isAuth && token ? (
-                    <button className="text-gray-600 hover:text-gray-900 font-semibold" onClick={handleLogout}>
+                    <button className="text-gray-600 text-start hover:text-gray-900 font-semibold" onClick={handleLogout}>
                       Logout
                     </button>
                   ) : (
                     <button
-                      className="text-gray-600 hover:text-gray-900 font-semibold"
+                      className="text-gray-600 text-start hover:text-gray-900 font-semibold"
                       onClick={() => navigate("/login")}
                     >
                       Login
                     </button>
                   )}
+                  </div>
+              
                 </div>
               </div>
             </ClickAwayListener>

@@ -5,19 +5,23 @@ import {Link, Navigate, useLocation, useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { toaster } from "../utils/toastConfig";
 import 'react-toastify/dist/ReactToastify.css';
+import { IoEyeOutline } from "react-icons/io5";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const isAuth = useSelector((state) => state.auth);
-  console.log(isAuth);
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
   const [show, setShow] = useState(false)
   const location = useLocation()
-  const comingFrom = location.state?.from?.pathname || "/";
+
+  const [showPassword, setShowPassword] = useState(false)
+  const handleShowpassword = () =>{
+    setShowPassword(!showPassword)
+  }
 
   const handleLogin = (e) =>{
     let {name,value} = e.target;
@@ -25,7 +29,6 @@ const Login = () => {
       ...loginForm,[name]:value
     })
 
-    console.log(loginForm,"loginForm")
 
   }
 
@@ -45,7 +48,6 @@ const Login = () => {
             "Login Fail! Please enter correct cridentials",
             toaster(1500)
           );
-        console.log(res,"formResponse");
       })
       .catch((err) => {
         toast.error(
@@ -72,7 +74,7 @@ const Login = () => {
 
         <div className="sm:w-full md:w-4/5 m-auto">
           <form onSubmit={handleSubmit} className="w-full mt-4">
-            <div className="flex items-center justify-between mt-4 gap-3">
+            <div className="flex items-center justify-between mt-4 md:gap-3 lg:gap-3">
               <label
                 htmlFor="email"
                 className="text-md font-medium text-gray-800 w-1/4 flex items-center"
@@ -88,7 +90,7 @@ const Login = () => {
                   autoComplete="email"
                   value={loginForm.email}
                   onChange={handleLogin}
-                  className="flex items-center sm:w-4/5 md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="flex items-center sm:w-[90%] md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -99,17 +101,20 @@ const Login = () => {
               >
                 Password:
               </label>
-              <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4">
+              <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4 flex items-center gap-2">
+              <div className="w-[90%]">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={!!showPassword ? "text" : "password"}
                   required
                   autoComplete="password"
                   value={loginForm.password}
                   onChange={handleLogin}
                   className="flex items-center sm:4/5 md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                </div>
+                <IoEyeOutline onClick = {handleShowpassword} />
               </div>
             </div>            
             <div>

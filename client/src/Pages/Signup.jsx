@@ -5,6 +5,7 @@ import { userSignup } from "../Redux/Reducers/userAuthReducer/action";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toaster } from "../utils/toastConfig";
+import { IoEyeOutline } from "react-icons/io5";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,11 @@ const Signup = () => {
     password: "",
     mobile: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false)
+  const handleShowpassword = () =>{
+    setShowPassword(!showPassword)
+  }
   const handleSignup = (e) => {
     let { name, value } = e.target;
     setSignupForm({
@@ -167,16 +173,20 @@ const Signup = () => {
                   </a>
                 </div> */}
               {/* </div> */}
-              <div className="mt-2 w-3/4">
+              <div className="mt-2 w-3/4 flex items-center gap-2">
+              <div className="w-[90%]">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={!!showPassword ? "text" : "password"}
                   value={signupForm.password}
                   onChange={handleSignup}
                   required
                   className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                </div>
+                <IoEyeOutline onClick = {handleShowpassword} />
+                
               </div>
             </div>
 
