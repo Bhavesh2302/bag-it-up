@@ -5,6 +5,7 @@ GET_BAG_FAILURE, GET_BAG_REQUEST, GET_BAG_SUCCESS
   import axios from "axios";
   
   export const getBagData = (params) => (dispatch) => {
+    console.log(process.env.REACT_APP_BASE_URL,"reactUrl")
     dispatch({ type: GET_BAG_REQUEST });
     return axios({
       method: "get",

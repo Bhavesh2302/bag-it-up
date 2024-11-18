@@ -157,22 +157,13 @@ const Signup = () => {
             </div>
 
             {/* <div className="flex items-center justify-evenly"> */}
-              <div className="flex items-center justify-evenly mt-4 gap-3">
+              {/* <div className="flex items-center justify-evenly mt-4 gap-3">
                 <label
                   htmlFor="password"
                   className="text-md font-medium text-gray-800 w-1/4 flex items-center"
                 >
                   Password:
                 </label>
-                {/* <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div> */}
-              {/* </div> */}
               <div className="mt-2 w-3/4 flex items-center gap-2">
               <div className="w-[90%]">
                 <input
@@ -184,11 +175,36 @@ const Signup = () => {
                   required
                   className="flex items-center w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                </div>
                 <IoEyeOutline onClick = {handleShowpassword} />
+                </div>
                 
               </div>
-            </div>
+            </div> */}
+<div className="flex items-center justify-evenly mt-4 gap-3">
+  <label
+    htmlFor="password"
+    className="text-md font-medium text-gray-800 w-1/4 flex items-center"
+  >
+    Password:
+  </label>
+
+  <div className="mt-2 w-3/4 relative">
+    <input
+      id="password"
+      name="password"
+      type={!!showPassword ? "text" : "password"}
+      value={signupForm.password}
+      onChange={handleSignup}
+      required
+      className="flex w-full rounded-md border-0 py-1.5 px-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+    />
+    <IoEyeOutline
+      onClick={handleShowpassword}
+      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+    />
+  </div>
+</div>
+
 
             <div>
               <button

@@ -72,7 +72,7 @@ const Login = () => {
           </h2>
         </div>
 
-        <div className="sm:w-full md:w-4/5 m-auto">
+        {/* <div className="sm:w-full md:w-4/5 m-auto">
           <form onSubmit={handleSubmit} className="w-full mt-4">
             <div className="flex items-center justify-between mt-4 md:gap-3 lg:gap-3">
               <label
@@ -94,29 +94,34 @@ const Login = () => {
                 />
               </div>
             </div>
+            
             <div className="flex items-center justify-between mt-4 gap-3">
-              <label
-                htmlFor="lastname"
-                className="text-md font-medium text-gray-800 w-1/4 flex items-center"
-              >
-                Password:
-              </label>
-              <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4 flex items-center gap-2">
-              <div className="w-[90%]">
-                <input
-                  id="password"
-                  name="password"
-                  type={!!showPassword ? "text" : "password"}
-                  required
-                  autoComplete="password"
-                  value={loginForm.password}
-                  onChange={handleLogin}
-                  className="flex items-center sm:4/5 md:w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                </div>
-                <IoEyeOutline onClick = {handleShowpassword} />
-              </div>
-            </div>            
+ 
+  <label
+    htmlFor="password"
+    className="text-md font-medium text-gray-800 w-1/4 flex items-center"
+  >
+    Password:
+  </label>
+
+  <div className="mt-2 sm:w-full md:w-4/5 lg:w-3/4 relative">
+    <input
+      id="password"
+      name="password"
+      type={!!showPassword ? "text" : "password"}
+      required
+      autoComplete="password"
+      value={loginForm.password}
+      onChange={handleLogin}
+      className="flex w-full rounded-md border-0 py-1.5 px-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+    />
+    <IoEyeOutline
+      onClick={handleShowpassword}
+      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+    />
+  </div>
+</div>
+
             <div>
               <button
                 type="submit"
@@ -136,7 +141,80 @@ const Login = () => {
               Signup
             </Link>
           </p>
-        </div>
+        </div> */}
+        <div className="sm:w-full md:w-4/5 lg:w-3/4 m-auto">
+  <form onSubmit={handleSubmit} className="w-full mt-4">
+    {/* Email Field */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-2">
+      <label
+        htmlFor="email"
+        className="text-md font-medium text-gray-800 sm:w-1/4"
+      >
+        Email:
+      </label>
+      <div className="w-full sm:w-3/4">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          value={loginForm.email}
+          onChange={handleLogin}
+          className="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+      </div>
+    </div>
+
+    {/* Password Field */}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-2">
+      <label
+        htmlFor="password"
+        className="text-md font-medium text-gray-800 sm:w-1/4"
+      >
+        Password:
+      </label>
+      <div className="w-full sm:w-3/4 relative">
+        <input
+          id="password"
+          name="password"
+          type={!!showPassword ? "text" : "password"}
+          required
+          autoComplete="password"
+          value={loginForm.password}
+          onChange={handleLogin}
+          className="w-full rounded-md border-0 py-1.5 px-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+        <IoEyeOutline
+          onClick={handleShowpassword}
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+        />
+      </div>
+    </div>
+
+    {/* Submit Button */}
+    <div className="mt-6">
+      <button
+        type="submit"
+        className="w-full sm:w-1/2 flex justify-center m-auto rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+
+  {/* Signup Link */}
+  <p className="mt-3 text-center text-sm text-gray-500">
+    Already a member?{" "}
+    <Link
+      to="/signup"
+      className="font-semibold text-indigo-600 hover:text-indigo-500"
+    >
+      Signup
+    </Link>
+  </p>
+</div>
+
       </div>
     </div>
   );
