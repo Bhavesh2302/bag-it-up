@@ -62,11 +62,11 @@ const Login = () => {
     <div className=" sm:w-[90%] md:w-4/5 lg:w-1/2 m-auto">
       <div className="sm:w-full mt-6 p-6 shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset] ">
         <div className="w-full">
-          <img
+          {/* <img
             alt="bag_it_up"
             src="https://i.imgur.com/8SSRICl.png"
             className="h-14 w-14 m-auto"
-          />
+          /> */}
           <h2 className="text-center text-xl font-bold leading-9 tracking-tight text-gray-800">
             Sign in to your account
           </h2>
@@ -144,7 +144,6 @@ const Login = () => {
         </div> */}
         <div className="sm:w-full md:w-4/5 lg:w-3/4 m-auto">
   <form onSubmit={handleSubmit} className="w-full mt-4">
-    {/* Email Field */}
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-2">
       <label
         htmlFor="email"
@@ -166,7 +165,6 @@ const Login = () => {
       </div>
     </div>
 
-    {/* Password Field */}
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-4 gap-2">
       <label
         htmlFor="password"
@@ -192,8 +190,7 @@ const Login = () => {
       </div>
     </div>
 
-    {/* Submit Button */}
-    <div className="mt-6">
+    <div className="mt-6 ml-[8px]">
       <button
         type="submit"
         className="w-full sm:w-1/2 flex justify-center m-auto rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"

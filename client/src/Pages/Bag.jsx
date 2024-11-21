@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Filter from "../Components/Filter";
 import StarRating from "../Components/StarRating";
 import Drawer from "../Components/Drawer";
+import { FaShoppingBag } from "react-icons/fa";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Bag = () => {
   const dispatch = useDispatch();
-  const { data, totalFilteredCount, totalLength } = useSelector(
+  const { data, totalFilteredCount, totalLength, isLoading } = useSelector(
     (state) => state.bag
   );
   const { sort, brand, category, size } = useSelector((state) => state.filter);
@@ -56,8 +58,9 @@ const Bag = () => {
       <div className="md:hidden lg:hidden">
       <Drawer/>
       </div>
+      {isLoading && <LoadingSpinner/>}
       <div className="w-full lg:grid lg:grid-cols-3 gap-y-3 gap-4 sm:m-auto md:m-auto lg:m-auto md:grid md:grid-cols-2 sm:grid-cols-1 items-center">
-        {data &&
+        {!isLoading && data &&
           data.length > 0 &&
           data.map((item) => (
             <div

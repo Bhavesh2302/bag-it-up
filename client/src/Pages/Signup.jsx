@@ -63,11 +63,11 @@ const Signup = () => {
     <div className="sm:w-full md:w-3/4 lg:w-2/3 m-auto">
       <div className="sm:w-full md:w-4/5 mt-4 p-4 m-auto shadow-[rgba(50,50,93,0.25)_0px_50px_100px_-20px,_rgba(0,0,0,0.3)_0px_30px_60px_-30px,_rgba(10,37,64,0.35)_0px_-2px_6px_0px_inset]">
         <div className="w-full">
-        <img
+        {/* <img
             alt="bag_it_up"
             src="https://i.imgur.com/8SSRICl.png"
             className="w-16 h-16 m-auto"
-          />
+          /> */}
           <h2 className="text-center text-xl font-bold leading-9 tracking-tight text-gray-800">
             Register to your account
           </h2>
@@ -206,7 +206,7 @@ const Signup = () => {
 </div>
 
 
-            <div>
+            <div className="ml-[10px]">
               <button
                 type="submit"
                 className="flex w-1/2 justify-center m-auto mt-6 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

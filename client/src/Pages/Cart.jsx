@@ -10,10 +10,11 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { toaster } from "../utils/toastConfig";
 import axios from 'axios'
+import LoadingSpinner from "../Components/LoadingSpinner";
 const Cart = () => {
   const dispatch = useDispatch();
   const  navigate = useNavigate()
-  const { cartData } = useSelector((state) => state.cart);
+  const { cartData ,isLoading} = useSelector((state) => state.cart);
   const { isAuth ,token } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -102,9 +103,9 @@ const Cart = () => {
 
   return (
     <div className="w-full">
-      {/* Cart items */}
+      {isLoading && <LoadingSpinner/>}
       <div className="mt-[10px]">
-        {cartData.length === 0 && (
+        {!isLoading && cartData.length === 0 && (
           <div className="w-1/2 mx-auto flex flex-col items-center">
             <img
               className="w-full h-96"
