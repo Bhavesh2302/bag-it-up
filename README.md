@@ -1,5 +1,5 @@
 # Bag It Up
-![Logo](https://i.ibb.co/jzjxfvq/Bag-It-Up-Logo.png)
+![Logo](https://i.imgur.com/FImI0yY.png)
 
 Hello and welcome!
 
